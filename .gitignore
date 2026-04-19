@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment Variables (Private Keys)
+.env
+Server/.env
+Client/.env
+
+# Editor / System files
+.DS_Store
+dist/
+.ai_memory/
