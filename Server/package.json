@@ -4,7 +4,7 @@
   "description": "Cognito AI - AI-powered development environment",
   "license": "ISC",
   "author": "Tahseen Anwer",
-  "type": "module", 
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",

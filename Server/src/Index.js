@@ -1,21 +1,17 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import aiRoutes from './Routes/ai.routes.js'; // Import our new routes
 
 dotenv.config();
 
 const app = express();
-const PORT = 5001;
-
-// Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // This is VERY important! It lets the server read your messages.
 
-// Test Route
-app.get('/', (req, res) => {
-    res.send('Cognito AI Backend is sprinting!');
-});
+// Use the AI routes
+app.use('/api', aiRoutes);
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+app.get('/', (req, res) => res.send("Cognito AI Kitchen is Open!"));
+
+app.listen(5001, () => console.log("Server is running on port 5001"));
