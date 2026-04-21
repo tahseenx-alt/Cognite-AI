@@ -1,22 +1,30 @@
-import React,{useEffect ,useState} from 'react'
+import React from 'react'
+import Editor from '@monaco-editor/react' // 1. Added the import!
+import Navbar from './Components/Navbar'
 
 function App() {
-  const [serverStatus, setServerStatus] = useState("connecting to Kitchen (backend)....");
-  useEffect(()=>{
-    fetch('http://localhost:5002/api')
-    .then((res)=> res.text())
-    .then((data)=>{
-      setServerStatus(data);
-    })
-    .catch((err)=>{
-      setServerStatus("Kitchen is closed (Server error)");
-      console.log(err);
-    })
-  },[])
   return (
-    <div className='flex flex-col items-center justify-center h-screen bg-zinc-900 text-white'>
-      <h1 className='text-6xl font-bold mb-4'>Cognite-AI</h1>
-      <p className='text-xl text-green-400'>{serverStatus}</p>
+    // 2. Added Tailwind classes to force the layout to fill the screen
+    <div className="h-screen w-full flex flex-col bg-zinc-900">
+      
+      {/* Your custom Navbar */}
+      <Navbar />
+      
+      {/* The Editor (wrapped in a flex-grow container so it fills the remaining space) */}
+      <div className="flex-grow w-full">
+        <Editor
+          height="100%"                   
+          theme="vs-dark"                 
+          defaultLanguage="javascript"    
+          defaultValue="// Write code..." 
+          options={{
+            minimap: { enabled: false },  
+            fontSize: 16,
+            wordWrap: "on"
+          }}
+        />
+      </div>
+
     </div>
   )
 }
